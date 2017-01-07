@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public bool recording = false; 
+    public bool recording = true; 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        recording = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,4 +22,6 @@ public class GameManager : MonoBehaviour {
             recording = true;
         }
 	}
+
+
 }

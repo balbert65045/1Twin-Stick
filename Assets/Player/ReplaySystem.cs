@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ReplaySystem : MonoBehaviour {
 
-    private const int bufferFrames = 1000;
+    private const int bufferFrames = 100;
     private MyKeyFrame[] keyFrames = new MyKeyFrame[bufferFrames];
     private Rigidbody rigidBody;
-    private GameManager GameManager; 
+    private GameManager GameManager;
+    private bool LastFrameMade = false; 
 
 
 	// Use this for initialization
@@ -23,7 +24,7 @@ public class ReplaySystem : MonoBehaviour {
         {
             Record();
         }
-        else
+        else if (LastFrameMade)
         {
             PlayBack(); 
         }
@@ -45,6 +46,11 @@ public class ReplaySystem : MonoBehaviour {
     {
         rigidBody.isKinematic = false;
         int frame = Time.frameCount % bufferFrames;
+        print("Writing frame " + frame);
+        if (Time.frameCount % bufferFrames == bufferFrames - 1)
+        {
+            LastFrameMade = true; 
+        }
         float time = Time.time;
        // print("Writing fram " + frame);
 
